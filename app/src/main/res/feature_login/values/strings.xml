@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hey_login_now">Hey,\nLogin Now</string>
+    <string name="if_you_are_new">If you are new/</string>
+    <string name="create_new">Create New</string>
+    <string name="forgot_password">Forgot Password/</string>
+    <string name="reset">Reset</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Signup</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">abc@def.com</string>
+</resources>
