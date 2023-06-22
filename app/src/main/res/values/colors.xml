@@ -19,4 +19,7 @@
     <color name="input_field_background_color">#E8ECECEC</color>
     <color name="input_field_hint_color">#C2B3B1B1</color>
 
+    <!--Button Colors-->
+    <color name="disabled_button_color">#A4C0F6</color>
+
 </resources>

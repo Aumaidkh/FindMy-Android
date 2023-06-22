@@ -2,11 +2,16 @@
 <resources>
     <declare-styleable name="FindMyLabeledInputField">
         <!-- Other attributes -->
-        <attr name="showError" format="boolean" />
+        <attr name="showError" format="boolean"/>
         <attr name="label" format="string"/>
         <attr name="hint" format="string"/>
         <attr name="value" format="string"/>
         <attr name="error" format="string"/>
         <attr name="input_type" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="FindMyProgressButton">
+        <attr name="buttonText" format="string"/>
+        <attr name="buttonBackgroundColor" format="color"/>
+        <attr name="buttonDisabledColor" format="color"/>
     </declare-styleable>
 </resources>

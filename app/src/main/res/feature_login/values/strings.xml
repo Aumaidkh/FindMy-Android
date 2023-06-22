@@ -12,4 +12,14 @@
     <string name="password_hint">Password</string>
     <string name="email_hint">abc@def.com</string>
     <string name="web_client_id">11707425813-9qm8diga4plovu99k1sf7ic8h4830djf.apps.googleusercontent.com</string>
+
+    <!--Validation Messages-->
+    <string name="email_cannot_be_empty">Email can\'t be empty</string>
+    <string name="name_cannot_be_empty">Full name can\'t be empty</string>
+    <string name="password_cannot_be_empty">Password can\'t be empty</string>
+    <string name="password_size_error">Password can\'t less than 6 characters</string>
+    <string name="password_validation_error">Password should contain atleast 1 uppercase, lowercase, symbol and a number</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_name">Invalid name</string>
+    <string name="invalid_phone_number">Invalid phone number</string>
 </resources>

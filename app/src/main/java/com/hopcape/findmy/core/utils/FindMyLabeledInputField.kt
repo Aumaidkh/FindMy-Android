@@ -23,7 +23,7 @@ class FindMyLabeledInputField : LinearLayout {
 
     private var textWatcher: TextWatcher? = null
 
-    private var showError = false
+    var showError = false
 
     constructor(context: Context) : super(context) {
         init(context,null)
@@ -90,6 +90,11 @@ class FindMyLabeledInputField : LinearLayout {
 
     fun setEmailError(error: String?) {
         this.error.text = error
+        if (error != null) {
+            this.error.visibility = View.VISIBLE
+        } else {
+            this.error.visibility = View.GONE
+        }
     }
 
     private fun setInputType(type: String?) {

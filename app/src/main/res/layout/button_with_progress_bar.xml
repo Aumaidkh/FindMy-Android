@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="13.5sp"
+        app:cornerRadius="8dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:elevation="4dp"
+        android:visibility="gone"
+        android:layout_gravity="center_vertical|start"
+        android:layout_marginStart="24dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"/>
+
+</FrameLayout>

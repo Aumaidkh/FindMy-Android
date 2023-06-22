@@ -2,6 +2,8 @@ package com.hopcape.findmy.feature_auth.login
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hopcape.findmy.R
+import com.hopcape.findmy.core.utils.Resource
 import com.hopcape.findmy.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +39,7 @@ import dagger.hilt.android.AndroidEntryPoint
         resultLauncher = requireActivity().registerForActivityResult(
             ActivityResultContracts.StartIntentSenderForResult()) { result ->
             Log.d(TAG, "Result: ${result.resultCode}")
-            if (result.resultCode == Activity.RESULT_OK){
+            if (result.resultCode == Activity.RESULT_OK) {
                 viewModel.onSignInIntent(result.data)
             }
         }
@@ -46,15 +49,41 @@ import dagger.hilt.android.AndroidEntryPoint
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClicks()
+        setupInputFields()
     }
 
-    private fun setupClicks(){
-        // Google Sign In
+    private fun setupInputFields() {
+        binding.apply { // Email Text Watcher
+            emailLayout.setOnTextChangeListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    viewModel.onEmailChange(p0.toString())
+                }
+
+                override fun afterTextChanged(p0: Editable?) = Unit
+            })
+
+            // Password Text Watcher
+            passwordLayout.setOnTextChangeListener(object : TextWatcher {
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    viewModel.onPasswordChange(p0.toString())
+                }
+
+                override fun afterTextChanged(p0: Editable?) = Unit
+            })
+        }
+    }
+
+    private fun setupClicks() { // Google Sign In
         binding.apply {
             btnLogin.setOnClickListener {
-                Log.d(TAG, "setupClicks: Button Tapped:")
-               // viewModel.onGoogleSignIn()
+                viewModel.login()
             }
+
+
 
             btnGoogleLogin.setOnClickListener {
                 viewModel.onGoogleSignIn()
@@ -66,6 +95,7 @@ import dagger.hilt.android.AndroidEntryPoint
     private fun consumeFlows() { // Collecting State
         lifecycleScope.launchWhenStarted {
             viewModel.state.collect { state ->
+                binding.btnLogin.progressBarVisible(state is LoginViewState.Loading)
                 when(state){
                     is LoginViewState.Error -> {
                         Log.d(TAG, "consumeFlows: Error: ${state.error.asString(requireContext())}")
@@ -75,7 +105,7 @@ import dagger.hilt.android.AndroidEntryPoint
                         Log.d(TAG, "consumeFlows: Loading...")
                     }
                     is LoginViewState.Success -> {
-                        Log.d(TAG, "consumeFlows: Logged In")
+                        Log.d(TAG, "consumeFlows: Logged In :${state.user}")
                     }
                 }
             }
@@ -94,9 +124,24 @@ import dagger.hilt.android.AndroidEntryPoint
                     is UiEvents.SignInWithGoogle -> {
                         Log.d(TAG, "consumeFlows: Sign In With Google")
                         event.intentSender?.let {
-                            resultLauncher.launch(IntentSenderRequest.Builder(event.intentSender
-                            ).build())
+                            resultLauncher.launch(IntentSenderRequest.Builder(event.intentSender).build())
                         }
+                    }
+                }
+            }
+        }
+
+        // Collecting Form State
+        lifecycleScope.launchWhenStarted {
+            viewModel.formState.collect { state ->
+                binding.apply {
+                    emailLayout.apply {
+                         setEmailError(state.emailError?.asString(requireContext()))
+
+                    }
+
+                    passwordLayout.apply {
+                        setEmailError(state.passwordError?.asString(requireContext()))
                     }
                 }
             }

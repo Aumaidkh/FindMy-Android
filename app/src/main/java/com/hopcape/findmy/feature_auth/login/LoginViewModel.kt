@@ -1,28 +1,38 @@
 package com.hopcape.findmy.feature_auth.login
 
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hopcape.findmy.core.domain.usecases.validation.EmailValidator
+import com.hopcape.findmy.core.domain.usecases.validation.PasswordValidator
+import com.hopcape.findmy.core.utils.Resource
+import com.hopcape.findmy.core.utils.UiEvent
 import com.hopcape.findmy.core.utils.UiText
 import com.hopcape.findmy.feature_auth.domain.models.User
+import com.hopcape.findmy.feature_auth.domain.repo.AuthRepository
+import com.hopcape.findmy.feature_auth.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "LoginViewModel"
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val googleAuthUiClient: GoogleAuthUiClient
+    private val googleAuthUiClient: GoogleAuthUiClient,
+    private val repo: AuthRepository,
+    private val loginUseCase: LoginUseCase,
+    private val emailValidator: EmailValidator,
+    private val passwordValidator: PasswordValidator
 ): ViewModel() {
 
     private val _state = MutableStateFlow<LoginViewState>(LoginViewState.Initial)
     val state get() = _state.asStateFlow()
 
-    private val formState = MutableStateFlow(LoginFormState())
+    private val _formState = MutableStateFlow(LoginFormState())
+    val formState get() = _formState.asStateFlow()
 
     private val eventChannel = Channel<UiEvents>()
     val eventFlow get() = eventChannel.receiveAsFlow()
@@ -39,17 +49,21 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onEmailChange(newValue: String){
-        formState.update {
+        _formState.update {
             it.copy(
-                email = newValue
+                email = newValue,
+                emailError = null
             )
         }
+
+        Log.d(TAG, "onEmailChange: Email: ${formState.value.email}")
     }
 
     fun onPasswordChange(newValue: String){
-        formState.update {
+        _formState.update {
             it.copy(
-                password = newValue
+                password = newValue,
+                passwordError = null
             )
         }
     }
@@ -79,5 +93,57 @@ class LoginViewModel @Inject constructor(
 
         }
     }
+
+    fun login(){
+        viewModelScope.launch {
+            val email = formState.value.email
+            val password = formState.value.password
+
+            val emailValidationResult = emailValidator.invoke(email)
+            val passwordValidator = passwordValidator.invoke(password)
+
+            val hasError = listOf(
+                emailValidationResult,
+                passwordValidator
+            ).any {
+                !it.success
+            }
+            if (hasError){
+                _formState.update {
+                    it.copy(
+                        emailError = emailValidationResult.message,
+                        passwordError = passwordValidator.message
+                    )
+                }
+                return@launch
+            }
+            loginUseCase(email,password).onEach { emission ->
+                when(emission){
+                    is UiEvent.Error -> {
+                        _state.value = LoginViewState.Error(emission.message!!)
+                    }
+                    is UiEvent.Loading -> {
+                        _state.value = LoginViewState.Loading
+                    }
+                    is UiEvent.Success -> {
+                        _state.value = LoginViewState.Success(emission.data!!)
+                    }
+                }
+            }.launchIn(this)
+        }
+    }
+
+    fun register(){
+        viewModelScope.launch {
+            repo.register(
+                email = "aumaid@gmail.com",
+                password = "PasswordFree",
+                fullname = "Murtaza",
+                phone = ""
+            )
+        }
+    }
+
+
 
 }

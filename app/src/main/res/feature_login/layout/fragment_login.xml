@@ -52,22 +52,18 @@
             app:layout_constraintStart_toEndOf="@+id/tvForgotPassword"
             app:layout_constraintTop_toTopOf="@+id/tvForgotPassword" />
 
-        <com.google.android.material.button.MaterialButton
+        <com.hopcape.findmy.core.utils.FindMyProgressButton
             android:id="@+id/btnLogin"
             android:layout_width="0dp"
-            android:layout_height="54dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:layout_marginTop="44dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/login"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="13.5sp"
-            app:cornerRadius="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:buttonText="@string/login"
+            android:layout_marginTop="24dp"
+            app:buttonBackgroundColor="@color/brand_color"
+            app:buttonDisabledColor="@color/disabled_button_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+            android:layout_height="wrap_content"/>
+
 
         <FrameLayout
             android:id="@+id/btnGoogle"
