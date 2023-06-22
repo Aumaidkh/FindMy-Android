@@ -1,0 +1,43 @@
+<!-- custom_email_view.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/labelTv"
+        style="@style/AuthParagraphStyle"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="6dp"
+        android:textColor="#888888"
+        android:text="Label" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        style="@style/FindMyInputField"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIfYouAreNew">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInput"
+            style="@style/FindMyTextInputEditTextFieldStyle" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/error"
+        style="@style/AuthParagraphStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:textColor="#D50000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/emailLayout"
+        app:layout_constraintTop_toBottomOf="@+id/emailLayout" />
+
+</LinearLayout>

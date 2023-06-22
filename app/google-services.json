@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "11707425813",
+    "project_id": "findmy-android-ed67f",
+    "storage_bucket": "findmy-android-ed67f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11707425813:android:8e102a279ecb74b947da1c",
+        "android_client_info": {
+          "package_name": "com.hopcape.findmy.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11707425813-rpjgmi0538sucr46q3sm0eoh9vvh2vpp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hopcape.findmy.android",
+            "certificate_hash": "9354d824a9c1bada9caf6dedf3c56cd8ccf5a2e6"
+          }
+        },
+        {
+          "client_id": "11707425813-9qm8diga4plovu99k1sf7ic8h4830djf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjuCoY4V1_pOOlCHY7LcEc-9EdMVur-Yg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11707425813-9qm8diga4plovu99k1sf7ic8h4830djf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

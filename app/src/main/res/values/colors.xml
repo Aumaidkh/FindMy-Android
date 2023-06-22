@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="brand_color">#4080FC</color>
+
+    <!--Black Variants-->
+    <color name="black_80">#CC000000</color>
+
+    <!--Gray Variants-->
+    <color name="gray_76">#C2B3B1B1</color>
+
+    <!--Input Field Colors-->
+    <color name="input_field_background_color">#E8ECECEC</color>
+    <color name="input_field_hint_color">#C2B3B1B1</color>
+
 </resources>
