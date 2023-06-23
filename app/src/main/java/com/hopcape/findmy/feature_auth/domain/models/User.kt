@@ -1,0 +1,10 @@
+package com.hopcape.findmy.feature_auth.domain.models
+
+data class User(
+    val userId: String?,
+    val name: String?,
+    val email: String?,
+    val profilePic: String?,
+    val accessToken: String
+)
+

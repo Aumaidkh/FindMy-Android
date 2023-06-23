@@ -1,14 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
-    namespace 'com.hopcape.findmy'
+
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.hopcape.findmy"
+        applicationId "com.hopcape.findmy.android"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -17,11 +21,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    packagingOptions {
+        exclude 'META-INF/gradle/incremental.annotation.processors'
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        viewBinding true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -29,6 +41,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res', 'src\\main\\res\\feature_auth\\feature_login\\layout', 'src\\main\\res\\feature_auth', 'src\\main\\res\\feature_auth\\common','src\\main\\res\\feature_auth\\common\\navigation','src\\main\\res\\feature_auth\\feature_login','src\\main\\res\\feature_auth\\feature_login\\drawable','src\\main\\res\\feature_auth\\feature_login\\values','src\\main\\res\\feature_auth\\feature_sign_up','src\\main\\res\\feature_auth\\feature_sign_up\\layout','src\\main\\res\\feature_auth\\feature_sign_up\\values', 'src\\main\\res\\feature_auth\\common\\layout', 'src\\main\\res\\feature_auth\\common\\drawable'
+            }
+        }
     }
 }
 
@@ -39,6 +58,35 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Ktx
+    implementation Deps.fragmentsKtx
+
+    implementation Coroutines.playServices
+    implementation Coroutines.core
+
+    // Firebase
+    implementation platform(Firebase.bom)
+    implementation Firebase.authKtx
+    implementation Firebase.firestore
+    implementation Firebase.playServicesAuth
+
+    // Retrofit
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConvertor
+    implementation Retrofit.okHttp
+
+    // Dagger
+    implementation Dagger.hilt
+    kapt Dagger.compiler
+
+    // Navigation
+    implementation Navigation.navigation
+    implementation Navigation.navigationUi
+
+    // Testing
+    androidTestImplementation Testing.espresso
+    androidTestImplementation Testing.testRules
+    androidTestImplementation Testing.testRunner
+    androidTestImplementation Testing.androidxTest
 }

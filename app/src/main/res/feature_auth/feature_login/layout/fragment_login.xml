@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbarThumbVertical="@android:color/transparent"
+    android:scrollbarTrackVertical="@android:color/transparent"
+    android:paddingStart="40dp"
+    android:paddingEnd="40dp"
+    tools:context=".feature_auth.login.LoginFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_extra_bold"
+            android:lineHeight="35dp"
+            android:layout_marginTop="70dp"
+            android:text="@string/hey_login_now"
+            android:textColor="@color/black_80"
+            android:textSize="29sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvIfYouAreNew"
+            style="@style/AuthParagraphStyle"
+            android:text="@string/dont_lose_what_you_love"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHeading" />
+
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            style="@style/AuthParagraphStyle"
+            android:layout_marginTop="24dp"
+            android:text="@string/forgot_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPasswordField" />
+
+        <TextView
+            android:id="@+id/tvReset"
+            style="@style/AuthClickableTextStyle"
+            android:layout_marginStart="4dp"
+            android:text="@string/reset"
+            app:layout_constraintBottom_toBottomOf="@+id/tvForgotPassword"
+            app:layout_constraintStart_toEndOf="@+id/tvForgotPassword"
+            app:layout_constraintTop_toTopOf="@+id/tvForgotPassword" />
+
+        <com.hopcape.findmy.core.utils.FindMyProgressButton
+            android:id="@+id/btnLogin"
+            android:layout_width="0dp"
+            app:buttonText="@string/login"
+            android:layout_marginTop="24dp"
+            app:buttonBackgroundColor="@color/brand_color"
+            app:buttonDisabledColor="@color/disabled_button_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvForgotPassword"
+            android:layout_height="wrap_content"/>
+
+
+        <FrameLayout
+            android:id="@+id/btnGoogle"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/google_login"
+            android:textAllCaps="false"
+            android:textColor="@color/brand_color"
+            android:textSize="16sp"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOr">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="16dp"
+                android:elevation="4dp"
+                android:src="@drawable/google" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:id="@+id/btnGoogleLogin"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/google_login"
+                android:textAllCaps="false"
+                android:textColor="@color/brand_color"
+                android:textSize="14sp"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvSignUp"
+            style="@style/AuthParagraphStyle"
+            android:layout_marginTop="40dp"
+            android:elevation="10dp"
+            android:padding="24dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="100dp"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_76"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+            app:layout_constraintStart_toEndOf="@+id/tvOr"
+            app:layout_constraintTop_toTopOf="@+id/tvOr" />
+
+        <TextView
+            android:id="@+id/tvOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/gray_76"
+            android:layout_marginTop="40dp"
+            android:text="@string/or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="100dp"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_76"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
+            app:layout_constraintEnd_toStartOf="@+id/tvOr"
+            app:layout_constraintTop_toTopOf="@+id/tvOr" />
+
+        <com.hopcape.findmy.core.utils.FindMyLabeledInputField
+            android:id="@+id/etEmailField"
+            android:layout_marginTop="60dp"
+            app:showError="false"
+            app:label="Email"
+            app:input_type="textEmailAddress"
+            app:hint="@string/email_hint"
+            app:error="Invalid Email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIfYouAreNew"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <com.hopcape.findmy.core.utils.FindMyLabeledInputField
+            android:id="@+id/etPasswordField"
+            android:layout_marginTop="20dp"
+            app:showError="false"
+            app:label="Password"
+            app:hint="@string/password_hint"
+            app:input_type="password"
+            app:error="Invalid Password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmailField"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
