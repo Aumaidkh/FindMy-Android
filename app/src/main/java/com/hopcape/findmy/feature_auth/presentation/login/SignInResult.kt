@@ -1,4 +1,4 @@
-package com.hopcape.findmy.feature_auth.login
+package com.hopcape.findmy.feature_auth.presentation.login
 
 data class SignInResult(
     val data: UserData?,

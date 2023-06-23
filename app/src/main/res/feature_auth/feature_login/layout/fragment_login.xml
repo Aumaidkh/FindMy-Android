@@ -8,7 +8,7 @@
     android:scrollbarTrackVertical="@android:color/transparent"
     android:paddingStart="40dp"
     android:paddingEnd="40dp"
-    tools:context=".feature_auth.login.LoginFragment">
+    tools:context=".feature_auth.presentation.login.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

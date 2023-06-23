@@ -1,4 +1,4 @@
-package com.hopcape.findmy.feature_auth.login
+package com.hopcape.findmy.feature_auth.presentation.login
 
 import android.content.Intent
 import androidx.lifecycle.ViewModel
@@ -35,10 +35,7 @@ class LoginViewModel @Inject constructor(
     fun onGoogleSignIn(){
         viewModelScope.launch {
             val intentSender = googleAuthUiClient.signIn()
-            eventChannel.send(
-                UiEvents.SignInWithGoogle(
-                    intentSender = intentSender
-                )
+            eventChannel.send(UiEvents.SignInWithGoogle(intentSender = intentSender)
             )
         }
     }
@@ -66,25 +63,16 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             val result = googleAuthUiClient.signInWithIntent(intent?:return@launch)
             if (result.data != null){
-                _state.value = LoginViewState.Success(
-                    user = result.data.run {
-                        User(
-                            name = username ?: "Anonymous",
-                            email = userId,
-                            profilePic = profilePictureUrl,
-                            accessToken = "",
-                            userId = userId
-                        )
-                    }
-                )
+                _state.value = LoginViewState.Success(user = result.data.run {
+                    User(name = username ?: "Anonymous", email = userId, profilePic = profilePictureUrl, accessToken = "",
+                        userId = userId)
+                })
                 return@launch
             }
 
-            _state.value = LoginViewState.Error(
-                error = result.errorMessage.run {
-                    UiText.Dynamic(this ?: "Something went wrong")
-                }
-            )
+            _state.value = LoginViewState.Error(error = result.errorMessage.run {
+                UiText.Dynamic(this ?: "Something went wrong")
+            })
 
         }
     }
@@ -115,7 +103,7 @@ class LoginViewModel @Inject constructor(
             loginUseCase(email,password).onEach { emission ->
                 when(emission){
                     is UiEvent.Error -> {
-                        _state.value = LoginViewState.Error(UiText.Dynamic(emission.message?.error?:"Something went wrong"))
+                        _state.value = LoginViewState.Error(UiText.Dynamic(emission.message?.error ?: "Something went wrong"))
                     }
                     is UiEvent.Loading -> {
                         _state.value = LoginViewState.Loading

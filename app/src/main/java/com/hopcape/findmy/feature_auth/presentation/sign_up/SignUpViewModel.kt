@@ -11,8 +11,8 @@ import com.hopcape.findmy.core.utils.UiEvent
 import com.hopcape.findmy.core.utils.UiText
 import com.hopcape.findmy.feature_auth.domain.models.User
 import com.hopcape.findmy.feature_auth.domain.usecase.RegisterUseCase
-import com.hopcape.findmy.feature_auth.login.GoogleAuthUiClient
-import com.hopcape.findmy.feature_auth.login.UiEvents
+import com.hopcape.findmy.feature_auth.presentation.login.GoogleAuthUiClient
+import com.hopcape.findmy.feature_auth.presentation.login.UiEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*

@@ -17,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hopcape.findmy.core.utils.showSnackBar
 import com.hopcape.findmy.databinding.FragmentSignUpBinding
-import com.hopcape.findmy.feature_auth.login.UiEvents
+import com.hopcape.findmy.feature_auth.presentation.login.UiEvents
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "SignUpFragment"
