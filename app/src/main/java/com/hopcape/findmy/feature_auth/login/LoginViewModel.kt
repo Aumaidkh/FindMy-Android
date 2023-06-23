@@ -1,16 +1,13 @@
 package com.hopcape.findmy.feature_auth.login
 
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hopcape.findmy.core.domain.usecases.validation.EmailValidator
 import com.hopcape.findmy.core.domain.usecases.validation.PasswordValidator
-import com.hopcape.findmy.core.utils.Resource
 import com.hopcape.findmy.core.utils.UiEvent
 import com.hopcape.findmy.core.utils.UiText
 import com.hopcape.findmy.feature_auth.domain.models.User
-import com.hopcape.findmy.feature_auth.domain.repo.AuthRepository
 import com.hopcape.findmy.feature_auth.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -18,11 +15,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val TAG = "LoginViewModel"
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val googleAuthUiClient: GoogleAuthUiClient,
-    private val repo: AuthRepository,
     private val loginUseCase: LoginUseCase,
     private val emailValidator: EmailValidator,
     private val passwordValidator: PasswordValidator
@@ -56,7 +51,6 @@ class LoginViewModel @Inject constructor(
             )
         }
 
-        Log.d(TAG, "onEmailChange: Email: ${formState.value.email}")
     }
 
     fun onPasswordChange(newValue: String){
@@ -78,7 +72,8 @@ class LoginViewModel @Inject constructor(
                             name = username ?: "Anonymous",
                             email = userId,
                             profilePic = profilePictureUrl,
-                            accessToken = ""
+                            accessToken = "",
+                            userId = userId
                         )
                     }
                 )
@@ -120,7 +115,7 @@ class LoginViewModel @Inject constructor(
             loginUseCase(email,password).onEach { emission ->
                 when(emission){
                     is UiEvent.Error -> {
-                        _state.value = LoginViewState.Error(emission.message!!)
+                        _state.value = LoginViewState.Error(UiText.Dynamic(emission.message?.error?:"Something went wrong"))
                     }
                     is UiEvent.Loading -> {
                         _state.value = LoginViewState.Loading
@@ -132,18 +127,6 @@ class LoginViewModel @Inject constructor(
             }.launchIn(this)
         }
     }
-
-    fun register(){
-        viewModelScope.launch {
-            repo.register(
-                email = "aumaid@gmail.com",
-                password = "PasswordFree",
-                fullname = "Murtaza",
-                phone = ""
-            )
-        }
-    }
-
 
 
 }

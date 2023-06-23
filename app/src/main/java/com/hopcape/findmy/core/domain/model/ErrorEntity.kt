@@ -1,22 +1,23 @@
 package com.hopcape.findmy.core.domain.model
 
-Copyright (c) 2023 Murtaza Khursheed
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+/**
+ * Wrapper around all the type of errors that can occur*/
+sealed class  ErrorEntity(val error: String){
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+    object Network : ErrorEntity("Network Error")
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-sealed interface ErrorEntity
+    object NotFound : ErrorEntity("Resource not found")
+
+    object AccessDenied : ErrorEntity("Access Denied")
+
+    object ServiceUnavailable : ErrorEntity("Service Unavailable")
+
+    object Unknown : ErrorEntity("Unknown Error")
+
+    object EmailAlreadyExists: ErrorEntity("Email already exists")
+
+    object IncorrectPassword: ErrorEntity("Incorrect password")
+
+    object TooManyAttempts: ErrorEntity("Too many attempts, please try again later")
+}

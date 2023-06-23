@@ -2,6 +2,8 @@ package com.hopcape.findmy.feature_auth.domain.repo
 
 import com.hopcape.findmy.core.utils.Resource
 import com.hopcape.findmy.feature_auth.data.dto.UserDto
+import com.hopcape.findmy.feature_auth.domain.models.User
+import com.hopcape.findmy.core.utils.Result
 
 /**
  * This repository exposes necessary apis to be used
@@ -14,7 +16,7 @@ interface AuthRepository {
      * @param email
      * @param password
      * */
-    suspend fun login(email: String,password: String) : Resource<UserDto>
+    suspend fun login(email: String,password: String) : Result<User>
 
 
     /**
@@ -24,7 +26,7 @@ interface AuthRepository {
      * @param fullname
      * @param phone
      * */
-    suspend fun register(email: String, password: String, fullname: String, phone: String) : Resource<UserDto>
+    suspend fun register(email: String, password: String, fullname: String, phone: String) : Result<User>
 
     /**
      * Requests an otp to reset password for an account

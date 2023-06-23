@@ -1,21 +1,45 @@
 package com.hopcape.findmy.core.data.utils
 
-Copyright (c) 2023 Murtaza Khursheed
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuthEmailException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.hopcape.findmy.core.domain.model.ErrorEntity
+import com.hopcape.findmy.core.domain.utils.ErrorHandler
+import retrofit2.HttpException
+import java.io.IOException
+import java.net.HttpURLConnection
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+class ErrorHandlerImpl : ErrorHandler{
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+    override fun getError(throwable: Throwable?): ErrorEntity {
+        return when(throwable){
+            is IOException -> ErrorEntity.Network
+            is HttpException -> {
+                when (throwable.code()) {
+                    // no cache found in case of no network, thrown by retrofit -> treated as network error
+                    //DataConstants.Network.HttpStatusCode.UNSATISFIABLE_REQUEST -> ErrorEntity.Network
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+                    // not found
+                    HttpURLConnection.HTTP_NOT_FOUND -> ErrorEntity.NotFound
+
+                    // access denied
+                    HttpURLConnection.HTTP_FORBIDDEN -> ErrorEntity.AccessDenied
+
+                    // unavailable service
+                    HttpURLConnection.HTTP_UNAVAILABLE -> ErrorEntity.ServiceUnavailable
+
+                    // all the others will be treated as unknown error
+                    else -> ErrorEntity.Unknown
+                }
+            }
+
+            is FirebaseAuthInvalidCredentialsException -> ErrorEntity.IncorrectPassword
+
+            is FirebaseAuthEmailException -> ErrorEntity.EmailAlreadyExists
+
+            is FirebaseTooManyRequestsException -> ErrorEntity.TooManyAttempts
+
+            else -> ErrorEntity.Unknown
+        }
+    }
+}

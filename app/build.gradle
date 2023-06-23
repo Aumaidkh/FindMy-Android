@@ -71,6 +71,11 @@ dependencies {
     implementation Firebase.firestore
     implementation Firebase.playServicesAuth
 
+    // Retrofit
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConvertor
+    implementation Retrofit.okHttp
+
     // Dagger
     implementation Dagger.hilt
     kapt Dagger.compiler

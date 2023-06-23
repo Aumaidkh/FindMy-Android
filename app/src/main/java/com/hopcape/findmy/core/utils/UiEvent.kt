@@ -1,5 +1,7 @@
 package com.hopcape.findmy.core.utils
 
+import com.hopcape.findmy.core.domain.model.ErrorEntity
+
 /**
  * Wrapper around the events that are to
  * be emitted from the use case layer
@@ -10,12 +12,12 @@ package com.hopcape.findmy.core.utils
  * */
 sealed class UiEvent<T>(
     val data: T? = null,
-    val message: UiText? = null
+    val message: ErrorEntity? = null
 ) {
 
     class Loading<T>(): UiEvent<T>()
 
     class Success<T>(data:T): UiEvent<T>(data= data)
 
-    class Error<T>(message:UiText): UiEvent<T>(message= message)
+    class Error<T>(message:ErrorEntity): UiEvent<T>(message= message)
 }

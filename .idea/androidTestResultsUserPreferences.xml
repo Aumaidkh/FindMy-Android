@@ -3,6 +3,20 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
+        <entry key="-532280296">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OnePlus&#10; CPH2423" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="XGGEBE4TEQE6CM45" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="581074314">
           <value>
             <AndroidTestResultsTableState>
@@ -11,6 +25,34 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_4a_API_31" value="120" />
                   <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1244147513">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OnePlus&#10; CPH2423" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="XGGEBE4TEQE6CM45" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1820964431">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="OnePlus&#10; CPH2423" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="XGGEBE4TEQE6CM45" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>

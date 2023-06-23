@@ -16,8 +16,10 @@ import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.hopcape.findmy.R
 import com.hopcape.findmy.core.utils.Resource
+import com.hopcape.findmy.core.utils.showSnackBar
 import com.hopcape.findmy.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -81,8 +83,6 @@ import dagger.hilt.android.AndroidEntryPoint
                 viewModel.login()
             }
 
-
-
             btnGoogleLogin.setOnClickListener {
                 viewModel.onGoogleSignIn()
             }
@@ -101,6 +101,7 @@ import dagger.hilt.android.AndroidEntryPoint
                 when(state){
                     is LoginViewState.Error -> {
                         Log.d(TAG, "consumeFlows: Error: ${state.error.asString(requireContext())}")
+                        requireActivity().showSnackBar(state.error)
                     }
                     is LoginViewState.Initial -> Unit
                     is LoginViewState.Loading -> {
