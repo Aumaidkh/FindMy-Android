@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/tvIfYouAreNew"
             style="@style/AuthParagraphStyle"
-            android:text="Don't lose what you love"
+            android:text="@string/dont_lose_what_you_love"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHeading" />
 
@@ -41,7 +41,7 @@
             android:layout_marginTop="24dp"
             android:text="@string/forgot_password"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/etPasswordField" />
 
         <TextView
             android:id="@+id/tvReset"
@@ -79,7 +79,7 @@
             app:cornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+            app:layout_constraintTop_toBottomOf="@+id/tvOr">
 
             <ImageView
                 android:layout_width="30dp"
@@ -113,6 +113,7 @@
             style="@style/AuthParagraphStyle"
             android:layout_marginTop="40dp"
             android:elevation="10dp"
+            android:padding="24dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
@@ -126,9 +127,9 @@
             android:layout_height="0.5dp"
             android:background="@color/gray_76"
             android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
             app:layout_constraintStart_toEndOf="@+id/tvOr"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toTopOf="@+id/tvOr" />
 
         <TextView
             android:id="@+id/tvOr"
@@ -136,10 +137,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/gray_76"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginTop="40dp"
             android:text="@string/or"
-            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -151,12 +150,12 @@
             android:layout_height="0.5dp"
             android:background="@color/gray_76"
             android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnGoogle"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOr"
             app:layout_constraintEnd_toStartOf="@+id/tvOr"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+            app:layout_constraintTop_toTopOf="@+id/tvOr" />
 
         <com.hopcape.findmy.core.utils.FindMyLabeledInputField
-            android:id="@+id/emailLayout"
+            android:id="@+id/etEmailField"
             android:layout_marginTop="60dp"
             app:showError="false"
             app:label="Email"
@@ -170,7 +169,7 @@
             android:layout_height="wrap_content"/>
 
         <com.hopcape.findmy.core.utils.FindMyLabeledInputField
-            android:id="@+id/passwordLayout"
+            android:id="@+id/etPasswordField"
             android:layout_marginTop="20dp"
             app:showError="false"
             app:label="Password"
@@ -179,7 +178,7 @@
             app:error="Invalid Password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLayout"
+            app:layout_constraintTop_toBottomOf="@+id/etEmailField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 

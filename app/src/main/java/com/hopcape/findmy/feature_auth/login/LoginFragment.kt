@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.registerForActivityResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.hopcape.findmy.R
 import com.hopcape.findmy.core.utils.Resource
 import com.hopcape.findmy.databinding.FragmentLoginBinding
@@ -28,21 +29,18 @@ import dagger.hilt.android.AndroidEntryPoint
         FragmentLoginBinding.inflate(layoutInflater)
     }
 
-    private lateinit var resultLauncher: ActivityResultLauncher<IntentSenderRequest>
-
-
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View { // Inflate the layout for this fragment
-        Log.d(TAG, "onCreateView: Opened")
-        consumeFlows()
-        resultLauncher = requireActivity().registerForActivityResult(
-            ActivityResultContracts.StartIntentSenderForResult()) { result ->
+    private val resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
             Log.d(TAG, "Result: ${result.resultCode}")
             if (result.resultCode == Activity.RESULT_OK) {
                 viewModel.onSignInIntent(result.data)
             }
         }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View { // Inflate the layout for this fragment
+        Log.d(TAG, "onCreateView: Opened")
+        consumeFlows()
         return binding.root
     }
 
@@ -54,7 +52,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
     private fun setupInputFields() {
         binding.apply { // Email Text Watcher
-            emailLayout.setOnTextChangeListener(object : TextWatcher {
+            etEmailField.setOnTextChangeListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -65,7 +63,7 @@ import dagger.hilt.android.AndroidEntryPoint
             })
 
             // Password Text Watcher
-            passwordLayout.setOnTextChangeListener(object : TextWatcher {
+            etPasswordField.setOnTextChangeListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) = Unit
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -87,6 +85,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
             btnGoogleLogin.setOnClickListener {
                 viewModel.onGoogleSignIn()
+            }
+
+            tvSignUp.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
             }
         }
     }
@@ -135,12 +137,12 @@ import dagger.hilt.android.AndroidEntryPoint
         lifecycleScope.launchWhenStarted {
             viewModel.formState.collect { state ->
                 binding.apply {
-                    emailLayout.apply {
+                    etEmailField.apply {
                          setEmailError(state.emailError?.asString(requireContext()))
 
                     }
 
-                    passwordLayout.apply {
+                    etPasswordField.apply {
                         setEmailError(state.passwordError?.asString(requireContext()))
                     }
                 }

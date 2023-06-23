@@ -12,7 +12,7 @@
     <string name="password_hint">Password</string>
     <string name="email_hint">abc@def.com</string>
     <string name="web_client_id">11707425813-9qm8diga4plovu99k1sf7ic8h4830djf.apps.googleusercontent.com</string>
-
+    <string name="dont_lose_what_you_love">Don\'t lose what you love</string>
     <!--Validation Messages-->
     <string name="email_cannot_be_empty">Email can\'t be empty</string>
     <string name="name_cannot_be_empty">Full name can\'t be empty</string>
