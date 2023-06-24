@@ -1,4 +1,4 @@
-package com.hopcape.findmy.feature_auth.login
+package com.hopcape.findmy.feature_auth.presentation.login
 
 import android.content.Context
 import android.content.Intent
@@ -45,7 +45,7 @@ class GoogleAuthUiClient @Inject constructor(
         }
     }
 
-    suspend fun signInWithIntent(intent: Intent): SignInResult{
+    suspend fun signInWithIntent(intent: Intent): SignInResult {
         val credential = oneTapClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credential.googleIdToken
 

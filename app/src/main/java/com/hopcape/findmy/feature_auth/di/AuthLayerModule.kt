@@ -6,7 +6,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.hopcape.findmy.feature_auth.login.GoogleAuthUiClient
+import com.hopcape.findmy.feature_auth.presentation.login.GoogleAuthUiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
