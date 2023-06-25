@@ -35,10 +35,14 @@ object Version {
     const val lifecycleViewModel = "1.0.0"
     const val lifecycleRuntimeCompose = "2.6.0"
 
+    // Retrofit
     const val retrofit = "2.9.0"
     const val gsonConvertor = "2.9.0"
     const val okHttp = "4.9.0"
     const val scalerConvertor = "2.1.0"
+
+    // Glide
+    const val glide = "4.15.1"
 
     // Firebase
     const val bom = "32.1.0"
@@ -64,6 +68,7 @@ object Deps {
     const val material = "androidx.compose.material:material:${Version.material}"
     const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:${Version.accompanist}"
     const val fragmentsKtx = "androidx.fragment:fragment-ktx:${Version.fragmentsKtx}"
+    const val glide = "com.github.bumptech.glide:glide:${Version.glide}"
 }
 
 object Coroutines {

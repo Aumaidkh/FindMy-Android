@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.hopcape.findmy.R
 import com.hopcape.findmy.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "HomeFragment"
 /**
@@ -25,6 +26,7 @@ private const val TAG = "HomeFragment"
  * Notifications
  * and Home fragments along with the bottom navigation menu
  * that is set up*/
+@AndroidEntryPoint
 class HomeFragment: Fragment() {
 
     private val binding by lazy {

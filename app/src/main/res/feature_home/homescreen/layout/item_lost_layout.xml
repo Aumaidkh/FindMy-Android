@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="4dp"
+    app:cardElevation="0.2dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="14dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="33dp"
+        android:paddingBottom="33dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvStatus"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/brand_color"
+            android:text="Missing"
+            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivItemImage"
+            android:layout_width="0dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/wallet"
+            android:layout_height="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvStatus" />
+
+        <TextView
+            android:id="@+id/tvItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bag, Blue colored"
+            android:ellipsize="end"
+            android:maxLength="14"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black_80"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivItemImage" />
+
+        <TextView
+            android:id="@+id/tvTimeStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 days ago"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#8C292D32"
+            android:textSize="9sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/tvItemTitle"
+            app:layout_constraintTop_toTopOf="@+id/tvItemTitle" />
+
+        <TextView
+            android:id="@+id/tvItemLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Near Janglat Mandi"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="#8C292D32"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemTitle" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="+917889534384"
+            android:textColor="#8C292D32"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemLocation" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRaiseClaim"
+            android:layout_width="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_height="45dp"
+            android:fontFamily="@font/inter"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Claim"
+            android:textSize="11sp"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

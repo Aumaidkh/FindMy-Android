@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="314dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        app:cardBackgroundColor="@color/brand_color"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="18dp"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="24dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvItemTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Samsung Galaxy S22"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvItemLocation"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvItemTitle"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="12sp"
+                android:textColor="#9CFFFFFF"
+                android:lineHeight="16dp"
+                android:text="Near M.M.A.B Hospital Janglat Mandi, 192101"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivCreatorDp"
+                android:layout_marginTop="6dp"
+                app:shapeAppearance="@style/CircularImage"
+                android:layout_width="30dp"
+                android:scaleType="centerCrop"
+                android:layout_height="30dp"
+                android:src="@drawable/dummy_dp"
+                app:layout_constraintStart_toStartOf="@+id/tvItemLocation"
+                app:layout_constraintTop_toBottomOf="@+id/tvItemLocation" />
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:lineHeight="12dp"
+                android:layout_marginStart="6dp"
+                android:text="Rahil Majeed"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivCreatorDp"
+                app:layout_constraintStart_toEndOf="@+id/ivCreatorDp"
+                app:layout_constraintTop_toTopOf="@+id/ivCreatorDp" />
+
+            <ImageView
+                android:id="@+id/ivItemImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                android:src="@drawable/phone_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

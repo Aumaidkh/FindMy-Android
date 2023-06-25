@@ -2,7 +2,9 @@ package com.hopcape.findmy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hopcape.findmy.core.utils.setWhiteStatusBar
 import com.hopcape.findmy.databinding.ActivityHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * This activity is going to host the entire app. The fragments will be shuffled in this activity
@@ -12,6 +14,7 @@ import com.hopcape.findmy.databinding.ActivityHomeBinding
  * 3. Item Details Fragment
  * 4. Explore Fragment : Containing Map View
  * etc*/
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     /**
@@ -22,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setWhiteStatusBar()
         setContentView(binding.root)
     }
 }
