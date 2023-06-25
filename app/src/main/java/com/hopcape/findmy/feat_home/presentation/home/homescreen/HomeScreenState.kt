@@ -16,6 +16,6 @@ data class HomeScreenState(
 sealed interface HomeScreenViewState{
     object Loading: HomeScreenViewState
     object Initial: HomeScreenViewState
-    class Success(val data: List<ReportedItem>): HomeScreenViewState
+    class Success(val data: HomeScreenState): HomeScreenViewState
     class Error(val error: UiText): HomeScreenViewState
 }

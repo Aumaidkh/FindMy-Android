@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hopcape.findmy.core.utils.CustomLayoutManager
 import com.hopcape.findmy.core.utils.showSnackBar
@@ -36,6 +37,12 @@ class HomeScreen: Fragment() {
         )
     }
 
+    private val foundItemsAdapter by lazy {
+        LostItemAdapter(
+            onClaimClick = {},
+            onItemClick = {}
+        )
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         consumeFlows()
         return binding.root
@@ -52,7 +59,9 @@ class HomeScreen: Fragment() {
             // Lost Items
             rvLostItems.adapter = lostItemsAdapter
             rvLostItems.layoutManager = CustomLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-           // lostItemsAdapter.submitData(getDummyReportedItems())
+
+            rvFoundItems.adapter = foundItemsAdapter
+            rvFoundItems.layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.VERTICAL,false)
         }
     }
 
@@ -63,7 +72,10 @@ class HomeScreen: Fragment() {
                     is HomeScreenViewState.Error -> requireActivity().showSnackBar(state.error)
                     is HomeScreenViewState.Initial -> Unit
                     is HomeScreenViewState.Loading -> Toast.makeText(requireContext(), "Loading...", Toast.LENGTH_SHORT).show()
-                    is HomeScreenViewState.Success -> lostItemsAdapter.submitData(state.data)
+                    is HomeScreenViewState.Success -> {
+                        lostItemsAdapter.submitData(state.data.lostItems)
+                        foundItemsAdapter.submitData(state.data.foundItems)
+                    }
                 }
             }
         }

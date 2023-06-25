@@ -9,6 +9,8 @@ import com.hopcape.findmy.feat_home.domain.ItemType
 import com.hopcape.findmy.feat_home.domain.ReportedItem
 import com.hopcape.findmy.feat_home.domain.Status
 import com.hopcape.findmy.feat_home.domain.repo.ItemRepository
+import com.hopcape.findmy.feat_home.domain.utils.toItemStatus
+import com.hopcape.findmy.feat_home.domain.utils.toItemType
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -24,14 +26,14 @@ class ItemRepositoryImpl @Inject constructor(
             val items = firestore.collection("items").whereEqualTo("visible",true).get().await()
             val reportedItems = items.documents.map { document ->
                 ReportedItem(
-                    status = Status.MISSING,
+                    status = document.getString("status")?.toItemStatus() ?: Status.FOUND,
                     phone = document.getString("phone") ?: "",
                     location = document.getString("location") ?: "",
                     name = document.getString("name") ?: "",
                     imageUrl = document.getString("image_url") ?: "",
                     timestamp = document.getLong("timestamp") ?: 0L,
                     itemId = document.getString("id") ?: "",
-                    itemType = ItemType.LOST
+                    itemType = document.getString("item_type")?.toItemType() ?: ItemType.LOST
                 )
             }
             reportedItems
