@@ -24,12 +24,18 @@ private const val TAG = "HomeScreen"
 @AndroidEntryPoint
 class HomeScreen: Fragment() {
 
+    /**
+     * Binding Vars*/
     private val binding by lazy {
         FragmentHomescreenBinding.inflate(layoutInflater)
     }
 
+    /**
+     * Instantiating ViewModel*/
     private val viewModel : HomeScreenViewModel by viewModels()
 
+    /**
+     * Instantiating Lost Items Adapter*/
     private val lostItemsAdapter by lazy {
         LostItemAdapter(
             onClaimClick = {},
@@ -37,6 +43,8 @@ class HomeScreen: Fragment() {
         )
     }
 
+    /**
+     * Instantiating Found Items Adapter*/
     private val foundItemsAdapter by lazy {
         LostItemAdapter(
             onClaimClick = {},
