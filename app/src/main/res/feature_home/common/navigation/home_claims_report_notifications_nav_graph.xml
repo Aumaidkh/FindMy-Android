@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_claims_report_notifications_nav_graph"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.hopcape.findmy.feat_home.presentation.home.homescreen.HomeScreen"
+        android:label="Home" />
+    <fragment
+        android:id="@+id/claimsScreen"
+        android:name="com.hopcape.findmy.feat_home.presentation.home.claims_screen.ClaimsScreen"
+        android:label="Claims" />
+    <fragment
+        android:id="@+id/reportScreen"
+        android:name="com.hopcape.findmy.feat_home.presentation.home.report_screen.ReportScreen"
+        android:label="Report" />
+    <fragment
+        android:id="@+id/notificationScreen"
+        android:name="com.hopcape.findmy.feat_home.presentation.home.notifications_screen.NotificationScreen"
+        android:label="Notifications" />
+</navigation>

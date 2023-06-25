@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--Circular Image Shape-->
+    <style name="CircularImage" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="RoundedCornerShape" parent="">
+        <item name="cornerSize">8%</item>
+    </style>
 
 </resources>

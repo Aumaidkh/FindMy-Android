@@ -1,6 +1,7 @@
 package com.hopcape.findmy.feature_auth.presentation.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.hopcape.findmy.HomeActivity
 import com.hopcape.findmy.R
 import com.hopcape.findmy.core.utils.Resource
 import com.hopcape.findmy.core.utils.showSnackBar
@@ -108,7 +110,8 @@ import dagger.hilt.android.AndroidEntryPoint
                         Log.d(TAG, "consumeFlows: Loading...")
                     }
                     is LoginViewState.Success -> {
-                        Log.d(TAG, "consumeFlows: Logged In :${state.user}")
+                        startActivity(Intent(requireContext(),HomeActivity::class.java))
+                        requireActivity().finish()
                     }
                 }
             }
